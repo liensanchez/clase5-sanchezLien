@@ -1,40 +1,53 @@
-let hidrogel = prompt("¿cuantos Hidrogel?");
-let funda = prompt("¿cuantas fundas?");
-alert("Se han agregado " + hidrogel + " Hidrogel y " + funda + " fundas a su pedido");
+class Pilas{
+  constructor(tipo,precio){
+  this.tipo=tipo,
+  this.precio=precio;
+  this.cantidad=10;
+  this.stock=false;
+  this.fallados=0;
+  }
 
-let hg = 1200 ;
-let tpu =800;
-function sumarProductos() {
-  let Total = (hg*hidrogel) + (tpu*funda) ;
-  return Total;
-}
-let compraTotal = sumarProductos ((hg*hidrogel) + (tpu*funda));
-alert("El total de tu compra es de $" + compraTotal);
+  //SUMAR IVA
+  Iva (){
+  this.precio=this.precio*1.21;
+    }
 
-function saludar() {
-  let nombre = prompt("Ingresa tu nombre:");
-  let apellido = prompt("Ingresa tu apellido:");
-  alert("Gracias por tu compra " + nombre + " " + apellido);
-}
-saludar();
+  //CAMBIAR EL STOCK DE TRUE A FALSE
+  Venta(){
+    this.stock=true;
+  }
 
-//OBJETOS
-const personayo = {
-  //propiedades
-  nombre:"lien",
-  edad:21,
-  provincia:"mendoza",
-  //metodo
-  saludar: function () {
-    console.log("hola")
+  //QUITAR PRODUCTOS POR VENTAS
+  Vender(cantidad){
+    this.cantidad=this.cantidad - cantidad;
+    if(this.cantidad==0){
+      this.stock=false;
+    }
+  }
+
+  //PRODUCTOS FALLADOS QUE DEVOLVIERON, EN CASO DE SER MAYOR AL 30% 
+  Devolucion(fallados){
+    this.fallados=this.fallados+fallados;
+    if(this.fallados<this.cantidad*0,30){
+      alert('NO COMPRAR PRODUCTO')
+    }
   }
 }
-//agregando un dato
-personayo.profesion="desarrollador"
-console.log(personayo)
-const persona2 ={
-  nombre:"will",
-  apellido:"smith",
+
+//INGRESO MANUAL DE PILAS
+let pilas1 =new Pilas ('aaa', 200)
+//COMPROBACION DE LAS VARIABLES
+console.log(pilas1)
+pilas1.Iva();
+pilas1.Vender(3);
+pilas1.Devolucion(7);
+
+
+//INGRESO POR PROMPT DE PILAS
+
+for(let index =0; index<3;index++){
+  let pilas=new Pilas(
+    prompt('tipo de pila'),
+    prompt('precio de pila'),
+    );  
 }
-console.log(personayo.provincia)
-console.log(personayo.saludar())
